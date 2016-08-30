@@ -49,10 +49,8 @@ define python::version(
 
     if has_key($hierdata, $::operatingsystem) {
       $os_env = $hierdata[$::operatingsystem]
-    } elsif $::operatingsystem == 'Darwin' {
-      $os_env = {'PYTHON_CONFIGURE_OPTS' => '--enable-framework'}
     } else {
-      $os_env = {'PYTHON_CONFIGURE_OPTS' => '--enable-shared'}
+      $os_env = {}
     }
 
     if has_key($hierdata, $version) {
