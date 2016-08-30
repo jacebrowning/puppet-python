@@ -61,10 +61,7 @@ define python::version(
       $version_env = {}
     }
 
-    notice($_env)
     $_env = merge(merge(merge($default_env, $os_env), $version_env), $env)
-    notice($_env)
-    _env.merge!({'PYTHON_CONFIGURE_OPTS' => '--enable-framework'})
     notice($_env)
 
     if has_key($_env, 'CC') and $_env['CC'] =~ /gcc/ {
