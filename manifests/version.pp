@@ -62,7 +62,7 @@ define python::version(
     }
 
     notice($_env)
-    $_env['PYTHON_CONFIGURE_OPTS'] = '--enable-framework'
+    $_env = {'PYTHON_CONFIGURE_OPTS' => '--enable-framework'}
     notice($_env)
     $_env = merge(merge(merge($default_env, $os_env), $version_env), $env)
 
