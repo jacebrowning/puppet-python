@@ -68,13 +68,14 @@ define python::version(
     }
 
     exec { "python-install-${version}":
-      command  => "${python::pyenv::prefix}/bin/pyenv install --skip-existing ${version}",
-      cwd      => "${python::pyenv::prefix}/versions",
-      provider => 'shell',
-      timeout  => 0,
-      creates  => $dest,
-      user     => $python::pyenv::user,
-      require  => Package['readline'],
+      command     => "${python::pyenv::prefix}/bin/pyenv install --skip-existing ${version}",
+      cwd         => "${python::pyenv::prefix}/versions",
+      environment => {'PYTHON_CONFIGURE_OPTS' => '--enable-framework'},
+      provider    => 'shell',
+      timeout     => 0,
+      creates     => $dest,
+      user        => $python::pyenv::user,
+      require     => Package['readline'],
     }
 
     Exec["python-install-${version}"] {
